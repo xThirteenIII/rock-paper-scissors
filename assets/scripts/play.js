@@ -1,13 +1,13 @@
 "use strict"
              
-window.onload() = function(){
-    getComputerChoice;
-}
+window.onload = function(){ 
+    getComputerChoice();
+};
 
 function getComputerChoice(){
     let computerChoice;
 
-    let randomNumber = Math.random() * (2 - 0) + 0;
+    let randomNumber = Math.floor(Math.random() * (3 - 0) + 0);
 
     switch(randomNumber){
         case 0:
@@ -22,8 +22,6 @@ function getComputerChoice(){
         default:
             console.error("Math.random didn't quite work, oops");
     }
-
-    console.log(computerChoice);
 
     return computerChoice;
 }
