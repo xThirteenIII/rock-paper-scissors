@@ -1,12 +1,7 @@
 
-//  For now, remove the logic that plays exactly five rounds.
-//  Create three buttons, one for each selection. Add an event listener to the buttons that call your playRound function with the correct playerSelection every time a button is clicked. (you can keep the console.logs for this step)
 //  Add a div for displaying results and change all of your console.logs into DOM methods.
 //  Display the running score, and announce a winner of the game once one player reaches 5 points.
 //  You will likely have to refactor (rework/rewrite) your original code to make it work for this. That’s OK! Reworking old code is an important part of a programmer’s life.
-
-
-"use strict"
 
 //Global variables
 let computerChoice;
@@ -17,10 +12,9 @@ let computerScore = 0;
 
 const gameMap = new Map;
 
-             
 window.onload = function(){ 
     createGameMap();
-    bestOfFive();
+    createButtons();
 };
 
 function getComputerChoice(){
@@ -30,19 +24,6 @@ function getComputerChoice(){
     return computerChoice;
 }
 
-
-function   getPlayerChoice(){
-
-    let playerText = prompt("Please write your choice:");
-
-    if (!gameMap.has(playerText.toLowerCase())){
-        console.error("Sorry not a valid option, rock paper or scissors? Watch out for typo: not AI based yet")
-    }
-
-    return gameMap.get(playerText.toLowerCase());
-}
-
-
 function createGameMap(){
     gameMap.set("rock", 0);
     gameMap.set("paper", 1);
@@ -51,11 +32,13 @@ function createGameMap(){
 
 function playRound(){
 
+    result = document.getElementById("cpu");
+
+    result.removeChild(cpu_text)
+
     getComputerChoice();
 
-    playerChoice = getPlayerChoice();
-
-    switch(playerChoice){
+    switch(gameMap.get(playerChoice)){
         case 0: 
             if (computerChoice == 1){
                 computerScore++;
@@ -81,16 +64,38 @@ function playRound(){
             console.error("how did you get here?")
 
     }
-    console.log(computerChoice, playerChoice);
-    console.log("Player score:", playerScore);
-    console.log("CPU score:", computerScore);
+
+    cpu_text = document.createTextNode(computerChoice);
+    result.appendChild(cpu_text);
 }
 
-function bestOfFive(){
+function selectRock(){
 
-    while ( 0==0){
-        playRound();
-    };
+  playerChoice = "rock";
+}
 
-    return;
+function selectPaper(){
+
+  playerChoice  = "paper";
+}
+
+function selectScissors(){
+
+  playerChoice = "scissors";
+}
+
+function createButtons(){
+
+  const rock_button = document.querySelector('#rock');
+  rock_button.addEventListener('click', selectRock);
+  rock_button.addEventListener('click', playRound);
+
+  const paper_button = document.querySelector('#paper');
+  paper_button.addEventListener('click', selectPaper);
+  paper_button.addEventListener('click', playRound);
+
+  const scissors_button = document.querySelector('#scissors');
+  scissors_button.addEventListener('click', selectScissors);
+  scissors_button.addEventListener('click', playRound);
+
 }
