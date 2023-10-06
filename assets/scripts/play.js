@@ -28,6 +28,9 @@ function createGameMap(){
     gameMap.set("rock", 0);
     gameMap.set("paper", 1);
     gameMap.set("scissors", 2);
+    gameMap.set(0, "rock");
+    gameMap.set(1, "paper");
+    gameMap.set(2, "scissors");
 }
 
 function playRound(){
@@ -100,6 +103,13 @@ function showResult(){
     while (cpu_text.firstChild) {
         cpu_text.removeChild(cpu_text.firstChild);
     }
-    textNode = document.createTextNode(`CPU: ${computerChoice}`);
+    let textNode = document.createTextNode(`CPU: ${gameMap.get(computerChoice)}`);
     cpu_text.appendChild(textNode);
+
+    const player_text = document.querySelector("#player");
+    while (player_text.firstChild) {
+        player_text.removeChild(player_text.firstChild);
+    }
+    let playerTextNode = document.createTextNode(`Player: ${playerChoice}`);
+    player_text.appendChild(playerTextNode);
 }
