@@ -32,10 +32,6 @@ function createGameMap(){
 
 function playRound(){
 
-    result = document.getElementById("cpu");
-
-    result.removeChild(cpu_text)
-
     getComputerChoice();
 
     switch(gameMap.get(playerChoice)){
@@ -62,11 +58,9 @@ function playRound(){
             break;
         default:
             console.error("how did you get here?")
-
     }
 
-    cpu_text = document.createTextNode(computerChoice);
-    result.appendChild(cpu_text);
+    showResult();
 }
 
 function selectRock(){
@@ -98,4 +92,14 @@ function createButtons(){
   scissors_button.addEventListener('click', selectScissors);
   scissors_button.addEventListener('click', playRound);
 
+}
+
+function showResult(){
+
+    const cpu_text = document.querySelector("#cpu");
+    while (cpu_text.firstChild) {
+        cpu_text.removeChild(cpu_text.firstChild);
+    }
+    textNode = document.createTextNode(`CPU: ${computerChoice}`);
+    cpu_text.appendChild(textNode);
 }
