@@ -64,6 +64,7 @@ function playRound(){
     }
 
     showResult();
+    showScore();
 }
 
 function selectRock(){
@@ -110,6 +111,23 @@ function showResult(){
     while (player_text.firstChild) {
         player_text.removeChild(player_text.firstChild);
     }
-    let playerTextNode = document.createTextNode(`Player: ${playerChoice}`);
+    let playerTextNode = document.createTextNode(`PLAYER: ${playerChoice}`);
     player_text.appendChild(playerTextNode);
+}
+
+function showScore(){
+
+    const cpu_score = document.querySelector("#cpu_score");
+    while (cpu_score.firstChild) {
+        cpu_score.removeChild(cpu_score.firstChild);
+    }
+    let textNode = document.createTextNode(`CPU: ${computerScore}`);
+    cpu_score.appendChild(textNode);
+
+    const player_score = document.querySelector("#player_score");
+    while (player_score.firstChild) {
+        player_score.removeChild(player_score.firstChild);
+    }
+    let playerTextNode = document.createTextNode(`PLAYER: ${playerScore}`);
+    player_score.appendChild(playerTextNode);
 }
