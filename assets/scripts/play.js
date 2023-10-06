@@ -65,6 +65,7 @@ function playRound(){
 
     showResult();
     showScore();
+    checkWinner();
 }
 
 function selectRock(){
@@ -130,4 +131,32 @@ function showScore(){
     }
     let playerTextNode = document.createTextNode(`PLAYER: ${playerScore}`);
     player_score.appendChild(playerTextNode);
+}
+
+function checkWinner(){
+
+    if (computerScore == 5){
+        removeButtonsClickEvents();
+        alert("CPU WON! D: Try again");
+
+    }
+    if (playerScore == 5){
+        removeButtonsClickEvents();
+        alert("YOU WON! :D");
+    }
+}
+
+function removeButtonsClickEvents(){
+
+        const rock_button = document.querySelector('#rock');
+        rock_button.removeEventListener('click', selectRock);
+        rock_button.removeEventListener('click', playRound);
+
+        const paper_button = document.querySelector('#paper');
+        paper_button.removeEventListener('click', selectPaper);
+        paper_button.removeEventListener('click', playRound);
+
+        const scissors_button = document.querySelector('#scissors');
+        scissors_button.removeEventListener('click', selectScissors);
+        scissors_button.removeEventListener('click', playRound);
 }
